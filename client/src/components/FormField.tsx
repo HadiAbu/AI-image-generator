@@ -50,7 +50,7 @@ const FormField = ({
         value={value}
         required
         onChange={handleChange}
-        className="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-[theme(colors.textPrimary)] focus:border-[theme(colors.textPrimary)] outline-none block w-full p-3"
+        className="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-[theme(colors.primaryOrange)] focus:border-[theme(colors.primaryOrange)] outline-none block w-full p-3"
       />
     </div>
   );

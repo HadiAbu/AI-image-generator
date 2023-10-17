@@ -11,7 +11,7 @@ const App = () => {
         </Link>
         <Link
           to={"/create-post"}
-          className="font-inter font-medium bg-[theme(colors.textPrimary)] text-white px-4 py-2 rounded-md"
+          className="font-inter font-medium bg-[theme(colors.primaryOrange)] text-white px-4 py-2 rounded-md"
         >
           Create
         </Link>

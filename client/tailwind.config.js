@@ -8,7 +8,8 @@ module.exports = {
         xs: "480px",
       },
       colors: {
-        textPrimary: "#bd5404",
+        primaryOrange: "#bd5404",
+        textSecondary: "#666e75",
       },
       fontFamily: {
         inter: ["Inter var", "sans-serif"],
