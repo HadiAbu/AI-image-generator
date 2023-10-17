@@ -5,8 +5,11 @@ To run the project:
 Go into the folder /client and run the following commands:
 
 npm i
+
 npm run dev
 
 and the folder /backend and run the following commands:
+
 npm i
+
 npm run start
