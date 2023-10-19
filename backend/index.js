@@ -5,18 +5,26 @@ import connectDB from "./database/db.js";
 import dalleRoutes from "./routes/dalleRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 
-connectDB;
 dotenv.config();
 
 const app = express();
 
+// adding middleware
+// app.use(cors());
+const corsOptions = {
+  origin: "*",
+  methods: "GET, POST, PUT, DELETE, OPTIONS", // Vervang door de toegestane methoden
+  allowedHeaders: "Content-Type", // Vervang door de toegestane headers
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.use(express.json({ limit: "30mb" }));
+
 //adding routes
 app.use("/api/v1/post", postRoutes);
 app.use("/api/v1/dalle", dalleRoutes);
-
-// adding middleware
-app.use(cors());
-app.use(express.json({ limit: "30mb" }));
 
 app.get("/", async (req, res) => {
   console.log("hello");
