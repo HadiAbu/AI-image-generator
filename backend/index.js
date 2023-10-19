@@ -2,11 +2,17 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./database/db.js";
+import dalleRoutes from "./routes/dalleRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
 connectDB;
 dotenv.config();
 
 const app = express();
+
+//adding routes
+app.use("/api/v1/post", postRoutes);
+app.use("/api/v1/dalle", dalleRoutes);
 
 // adding middleware
 app.use(cors());
