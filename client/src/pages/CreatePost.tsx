@@ -27,7 +27,7 @@ const CreatePost = () => {
             prompt,
           }),
         });
-
+        //
         const data = await response.json();
         setImg(`data:image/jpeg;base64,${data.photo}`);
       } catch (err) {
