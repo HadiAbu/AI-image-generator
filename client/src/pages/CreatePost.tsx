@@ -27,7 +27,7 @@ const CreatePost = () => {
             prompt,
           }),
         });
-        
+
         const data = await response.json();
         setImg(`data:image/jpeg;base64,${data.photo}`);
       } catch (err) {
@@ -39,7 +39,12 @@ const CreatePost = () => {
       alert("Please provide proper prompt");
     }
   };
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (prompt && img) {
+      setLoading(true);
+    }
+  };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     switch (e.target.name) {
@@ -54,7 +59,6 @@ const CreatePost = () => {
     }
   };
   const handleSurpriseMe = () => {
-    // e.preverntDefault();
     const randomPrompt = getRandomPrompt(prompt);
     setPrompt(randomPrompt);
   };
