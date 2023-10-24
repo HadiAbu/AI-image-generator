@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { preview } from "../assets";
+import { preview } from "../assets/preview";
 import { getRandomPrompt } from "../utils";
 import { Loader, FormField } from "../components";
 
@@ -39,10 +39,32 @@ const CreatePost = () => {
       alert("Please provide proper prompt");
     }
   };
-  const handleSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (prompt && img) {
       setLoading(true);
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/v1/dalle/api/v1/post",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, prompt, img }),
+          }
+        );
+
+        await response.json();
+        alert("Success");
+        navigate("/");
+      } catch (err) {
+        alert(err);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert("Please generate an image with proper details");
     }
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +93,11 @@ const CreatePost = () => {
           Create Imaginative and AI generated images using openAI and Dall-e
         </p>
       </div>
-      <form action="" className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+      <form
+        action=""
+        className="mt-16 max-w-3xl"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div className="flex flex-col gap-5">
           <FormField
             labelName="Your name"
